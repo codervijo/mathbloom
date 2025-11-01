@@ -31,7 +31,7 @@ const Navbar = () => {
               display: { xs: 'none', sm: 'block' },
             }}
           >
-            MathQuest
+            MathBloom
           </Typography>
         </Box>
 
