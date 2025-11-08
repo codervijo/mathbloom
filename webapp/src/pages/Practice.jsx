@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Container, Typography, Button, Card, CardContent, LinearProgress, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import QuizCard from '../components/QuizCard';
@@ -12,8 +12,8 @@ const Practice = () => {
   const [quizComplete, setQuizComplete] = useState(false);
   const [startTime] = useState(Date.now());
 
-  // Mock questions
-  const questions = [
+  // Fallback questions used if questions1.json is not available
+  const fallbackQuestions = [
     {
       number: 1,
       question: '6 × 7 = ?',
@@ -53,6 +53,43 @@ const Practice = () => {
       hint: 'Try 10 × 6 and then subtract 6!',
     },
   ];
+
+  // Start with fallback; replace with questions1.json if available
+  const [questions, setQuestions] = useState(fallbackQuestions);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadQuestions() {
+      try {
+        // Prefer loading from src via Vite's optional glob import (no build error if missing)
+        const modules = import.meta.glob('../data/questions1.json', { eager: true });
+        const mod = modules['../data/questions1.json'];
+        if (mod && mod.default && Array.isArray(mod.default)) {
+          if (isMounted) setQuestions(mod.default);
+          return;
+        }
+      } catch (_) {
+        // ignore and try next strategy
+      }
+
+      try {
+        // Fallback: attempt to load from public/questions1.json at runtime if present
+        const res = await fetch('/questions1.json', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted && Array.isArray(data)) setQuestions(data);
+        }
+      } catch (_) {
+        // ignore; keep fallbackQuestions
+      }
+    }
+
+    loadQuestions();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {

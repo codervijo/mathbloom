@@ -1,0 +1,426 @@
+[
+  {
+    "number": 1,
+    "question": "6 × 7 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [35, 42, 48, 54],
+    "correctAnswer": 42,
+    "hint": "Think of 6 groups of 7, or try counting by 7s six times!"
+  },
+  {
+    "number": 2,
+    "question": "45 ÷ 9 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 5,
+    "hint": "How many 9s fit into 45?"
+  },
+  {
+    "number": 3,
+    "question": "8 × 8 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [56, 64, 72, 80],
+    "correctAnswer": 64,
+    "hint": "This is a perfect square - 8 rows of 8!"
+  },
+  {
+    "number": 4,
+    "question": "12 + 15 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 27,
+    "hint": "Add the tens first (10 + 10), then the ones (2 + 5)."
+  },
+  {
+    "number": 5,
+    "question": "9 × 6 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [45, 54, 63, 72],
+    "correctAnswer": 54,
+    "hint": "Try 10 × 6 and then subtract 6!"
+  },
+  {
+    "number": 6,
+    "question": "7 × 8 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [54, 56, 63, 64],
+    "correctAnswer": 56,
+    "hint": "Think of 7 groups of 8, or skip-count by 8s."
+  },
+  {
+    "number": 7,
+    "question": "81 ÷ 9 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 9,
+    "hint": "Use your 9-times facts: 9 × what equals 81?"
+  },
+  {
+    "number": 8,
+    "question": "11 × 11 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [111, 121, 131, 101],
+    "correctAnswer": 121,
+    "hint": "A perfect square: 11 rows of 11."
+  },
+  {
+    "number": 9,
+    "question": "100 - 47 = ?",
+    "type": "input",
+    "category": "subtraction",
+    "correctAnswer": 53,
+    "hint": "Subtract tens, then ones."
+  },
+  {
+    "number": 10,
+    "question": "4 × 8 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [24, 28, 32, 36],
+    "correctAnswer": 32,
+    "hint": "Think 4 groups of 8."
+  },
+  {
+    "number": 11,
+    "question": "72 ÷ 8 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 9,
+    "hint": "What number times 8 equals 72?"
+  },
+  {
+    "number": 12,
+    "question": "5 × 9 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [40, 45, 50, 54],
+    "correctAnswer": 45,
+    "hint": "Use 10 × 5 and subtract 5."
+  },
+  {
+    "number": 13,
+    "question": "25 + 17 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 42,
+    "hint": "Add tens first, then ones."
+  },
+  {
+    "number": 14,
+    "question": "9 × 9 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [72, 81, 90, 99],
+    "correctAnswer": 81,
+    "hint": "This is 9 squared."
+  },
+  {
+    "number": 15,
+    "question": "63 ÷ 7 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 9,
+    "hint": "Use the fact 7 × ? = 63."
+  },
+  {
+    "number": 16,
+    "question": "12 × 12 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [132, 140, 144, 154],
+    "correctAnswer": 144,
+    "hint": "12 squared; think (10+2)×(10+2)."
+  },
+  {
+    "number": 17,
+    "question": "90 - 35 = ?",
+    "type": "input",
+    "category": "subtraction",
+    "correctAnswer": 55,
+    "hint": "Break 90 into 80 + 10."
+  },
+  {
+    "number": 18,
+    "question": "3 × 12 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [24, 30, 36, 42],
+    "correctAnswer": 36,
+    "hint": "3 twelves."
+  },
+  {
+    "number": 19,
+    "question": "48 ÷ 6 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 8,
+    "hint": "How many 6s in 48?"
+  },
+  {
+    "number": 20,
+    "question": "7 × 6 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [36, 40, 42, 48],
+    "correctAnswer": 42,
+    "hint": "Think 7 sixes."
+  },
+  {
+    "number": 21,
+    "question": "14 + 27 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 41,
+    "hint": "Add 20 + 10, then 4 + 7."
+  },
+  {
+    "number": 22,
+    "question": "8 × 9 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [64, 72, 80, 81],
+    "correctAnswer": 72,
+    "hint": "8 groups of 9."
+  },
+  {
+    "number": 23,
+    "question": "56 ÷ 8 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 7,
+    "hint": "How many 8s make 56?"
+  },
+  {
+    "number": 24,
+    "question": "6 × 4 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [20, 22, 24, 26],
+    "correctAnswer": 24,
+    "hint": "6 rows of 4."
+  },
+  {
+    "number": 25,
+    "question": "45 + 28 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 73,
+    "hint": "Add 40 + 20, then 5 + 8."
+  },
+  {
+    "number": 26,
+    "question": "10 × 7 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [60, 65, 70, 75],
+    "correctAnswer": 70,
+    "hint": "10 sevens."
+  },
+  {
+    "number": 27,
+    "question": "54 ÷ 9 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 6,
+    "hint": "9 times what equals 54?"
+  },
+  {
+    "number": 28,
+    "question": "15 + 16 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 31,
+    "hint": "Add 10 + 10 + 5 + 6."
+  },
+  {
+    "number": 29,
+    "question": "8 × 5 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [35, 40, 45, 50],
+    "correctAnswer": 40,
+    "hint": "Think 5 groups of 8."
+  },
+  {
+    "number": 30,
+    "question": "64 ÷ 8 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 8,
+    "hint": "8 times what equals 64?"
+  },
+  {
+    "number": 31,
+    "question": "12 × 3 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [24, 30, 36, 42],
+    "correctAnswer": 36,
+    "hint": "12 three times."
+  },
+  {
+    "number": 32,
+    "question": "32 + 19 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 51,
+    "hint": "Add 30 + 10, then 2 + 9."
+  },
+  {
+    "number": 33,
+    "question": "9 × 7 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [56, 63, 72, 77],
+    "correctAnswer": 63,
+    "hint": "9 groups of 7."
+  },
+  {
+    "number": 34,
+    "question": "42 ÷ 6 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 7,
+    "hint": "6 × ? = 42."
+  },
+  {
+    "number": 35,
+    "question": "18 + 27 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 45,
+    "hint": "Add 20 + 10 + 8 + 7."
+  },
+  {
+    "number": 36,
+    "question": "4 × 7 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [21, 24, 28, 32],
+    "correctAnswer": 28,
+    "hint": "4 sevens."
+  },
+  {
+    "number": 37,
+    "question": "36 ÷ 9 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 4,
+    "hint": "9 × ? = 36."
+  },
+  {
+    "number": 38,
+    "question": "7 × 5 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [30, 32, 35, 40],
+    "correctAnswer": 35,
+    "hint": "Think 5 groups of 7."
+  },
+  {
+    "number": 39,
+    "question": "75 - 29 = ?",
+    "type": "input",
+    "category": "subtraction",
+    "correctAnswer": 46,
+    "hint": "Subtract 30, then add back 1."
+  },
+  {
+    "number": 40,
+    "question": "6 × 8 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [42, 48, 54, 56],
+    "correctAnswer": 48,
+    "hint": "6 groups of 8."
+  },
+  {
+    "number": 41,
+    "question": "84 ÷ 7 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 12,
+    "hint": "7 × ? = 84."
+  },
+  {
+    "number": 42,
+    "question": "23 + 18 = ?",
+    "type": "input",
+    "category": "addition",
+    "correctAnswer": 41,
+    "hint": "Add 20 + 10, then 3 + 8."
+  },
+  {
+    "number": 43,
+    "question": "9 × 4 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [32, 34, 36, 38],
+    "correctAnswer": 36,
+    "hint": "9 groups of 4."
+  },
+  {
+    "number": 44,
+    "question": "12 ÷ 3 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 4,
+    "hint": "How many 3s fit in 12?"
+  },
+  {
+    "number": 45,
+    "question": "11 × 9 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [88, 96, 99, 108],
+    "correctAnswer": 99,
+    "hint": "Think 10 × 9 + 9."
+  },
+  {
+    "number": 46,
+    "question": "120 ÷ 10 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 12,
+    "hint": "How many tens are in 120?"
+  },
+  {
+    "number": 47,
+    "question": "14 × 3 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [32, 36, 40, 42],
+    "correctAnswer": 42,
+    "hint": "14 three times."
+  },
+  {
+    "number": 48,
+    "question": "50 - 27 = ?",
+    "type": "input",
+    "category": "subtraction",
+    "correctAnswer": 23,
+    "hint": "Count back 20, then 7."
+  },
+  {
+    "number": 49,
+    "question": "6 × 11 = ?",
+    "type": "multiple-choice",
+    "category": "multiplication",
+    "options": [54, 60, 64, 66],
+    "correctAnswer": 66,
+    "hint": "6 elevens."
+  },
+  {
+    "number": 50,
+    "question": "96 ÷ 12 = ?",
+    "type": "input",
+    "category": "division",
+    "correctAnswer": 8,
+    "hint": "12 × ? = 96."
+  }
+]
