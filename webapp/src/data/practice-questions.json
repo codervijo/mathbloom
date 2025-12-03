@@ -1,0 +1,40 @@
+[
+  {
+    "number": 1,
+    "question": "6 × 7 = ?",
+    "type": "multiple-choice",
+    "options": [35, 42, 48, 54],
+    "correctAnswer": 42,
+    "hint": "Think of 6 groups of 7, or try counting by 7s six times!"
+  },
+  {
+    "number": 2,
+    "question": "45 ÷ 9 = ?",
+    "type": "input",
+    "correctAnswer": 5,
+    "hint": "How many 9s fit into 45?"
+  },
+  {
+    "number": 3,
+    "question": "8 × 8 = ?",
+    "type": "multiple-choice",
+    "options": [56, 64, 72, 80],
+    "correctAnswer": 64,
+    "hint": "This is a perfect square - 8 rows of 8!"
+  },
+  {
+    "number": 4,
+    "question": "12 + 15 = ?",
+    "type": "input",
+    "correctAnswer": 27,
+    "hint": "Add the tens first (10 + 10), then the ones (2 + 5)."
+  },
+  {
+    "number": 5,
+    "question": "9 × 6 = ?",
+    "type": "multiple-choice",
+    "options": [45, 54, 63, 72],
+    "correctAnswer": 54,
+    "hint": "Try 10 × 6 and then subtract 6!"
+  }
+]
