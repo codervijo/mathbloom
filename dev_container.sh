@@ -404,7 +404,7 @@ rebuild_container() {
 # Cleanup on exit
 cleanup() {
     if [ -f "${XAUTH}" ]; then
-        rm -f "${XAUTH}" 2>/dev/null || true
+        sudo rm -f "${XAUTH}" 2>/dev/null || true
     fi
 }
 trap cleanup EXIT
