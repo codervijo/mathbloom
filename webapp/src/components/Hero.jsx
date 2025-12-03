@@ -87,25 +87,46 @@ const Hero = () => {
             Learn math through fun games, earn badges, and become a math hero! 🌟
           </Typography>
           
-          <Button
-            variant="contained"
-            size="large"
-            startIcon={<RocketLaunchIcon />}
-            onClick={() => navigate('/dashboard')}
-            sx={{
-              bgcolor: 'white',
-              color: '#2196F3',
-              fontSize: '1.3rem',
-              py: 2,
-              px: 5,
-              '&:hover': {
-                bgcolor: '#FFD700',
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+            <Button
+              variant="contained"
+              size="large"
+              startIcon={<RocketLaunchIcon />}
+              onClick={() => navigate('/dashboard')}
+              sx={{
+                bgcolor: 'white',
+                color: '#2196F3',
+                fontSize: '1.3rem',
+                py: 2,
+                px: 5,
+                '&:hover': {
+                  bgcolor: '#FFD700',
+                  color: 'white',
+                },
+              }}
+            >
+              Start Learning
+            </Button>
+            
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={() => navigate('/parent-login')}
+              sx={{
+                borderColor: 'white',
                 color: 'white',
-              },
-            }}
-          >
-            Start Learning
-          </Button>
+                fontSize: '1.3rem',
+                py: 2,
+                px: 5,
+                '&:hover': {
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                  borderColor: 'white',
+                },
+              }}
+            >
+              Parent Login
+            </Button>
+          </Box>
           
           <Box sx={{ mt: 6, display: 'flex', justifyContent: 'center', gap: 4, flexWrap: 'wrap' }}>
             {['🎯 Fun Challenges', '⭐ Earn Badges', '📊 Track Progress'].map((feature, index) => (
