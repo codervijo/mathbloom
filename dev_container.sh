@@ -173,7 +173,7 @@ setup_x11() {
     # Create X11 auth file if it doesn't exist
     if [ ! -f "${XAUTH}" ]; then
         if [ -d "${XAUTH}" ]; then
-            rm -rf "${XAUTH}"
+            sudo rm -rf "${XAUTH}"
         fi
         if ! touch "${XAUTH}" 2>/dev/null; then
             print_error "Cannot create X11 auth file at ${XAUTH}"
