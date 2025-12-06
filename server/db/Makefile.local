@@ -1,0 +1,11 @@
+# Customized Makefile.local
+build:
+	@echo "Project pre-build steps..."
+	# run central build after custom steps
+	$(MAKE) -f $(BUILDER_PATH)/Makefile build
+
+run:
+	bash ./start_mongodock.sh
+
+client:
+	mongosh mongodb://localhost:27018
