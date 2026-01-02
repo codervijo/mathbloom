@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { getJson, API_BASE } from '../lib/api';
 
 const AppContext = createContext();
 
@@ -49,21 +50,47 @@ export const AppProvider = ({ children }) => {
   const [isParentUnlocked, setIsParentUnlocked] = useState(false);
   const [currentChild, setCurrentChild] = useState(null);
   const [family, setFamily] = useState(DEMO_FAMILY);
+  const [loadingDemo, setLoadingDemo] = useState(true);
 
-  // Load from localStorage
+  // Load from server or localStorage (uses centralized api helper)
   useEffect(() => {
-    const savedFamily = localStorage.getItem('mathbloom-family');
-    const savedMode = localStorage.getItem('mathbloom-mode');
-    
-    if (savedFamily) {
-      setFamily(JSON.parse(savedFamily));
-    }
-    if (savedMode) {
-      setMode(savedMode);
-    }
+    let cancelled = false;
+
+    const load = async () => {
+      const savedFamily = localStorage.getItem('mathbloom-family');
+      const savedMode = localStorage.getItem('mathbloom-mode');
+
+      if (savedFamily) {
+        setFamily(JSON.parse(savedFamily));
+        if (savedMode) setMode(savedMode);
+        setLoadingDemo(false);
+        return;
+      }
+
+      try {
+        const json = await getJson('/api/demo-family');
+        if (!cancelled) {
+          setFamily(json);
+          setMode('demo');
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setFamily(DEMO_FAMILY);
+          setMode('demo');
+        }
+      } finally {
+        if (!cancelled) setLoadingDemo(false);
+      }
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // Save to localStorage
+  // Save to localStorage when in parent mode
   useEffect(() => {
     if (mode === 'parent') {
       localStorage.setItem('mathbloom-family', JSON.stringify(family));
@@ -75,6 +102,8 @@ export const AppProvider = ({ children }) => {
     setMode('demo');
     setIsParentUnlocked(false);
     setCurrentChild(null);
+    // keep server-provided family if already loaded, otherwise default
+    if (!loadingDemo) return;
     setFamily(DEMO_FAMILY);
   };
 
@@ -129,6 +158,7 @@ export const AppProvider = ({ children }) => {
     isParentUnlocked,
     currentChild,
     family,
+    loadingDemo,
     enterDemoMode,
     unlockParent,
     lockParent,

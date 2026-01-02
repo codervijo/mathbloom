@@ -22,6 +22,7 @@ import ParentSettings from "./pages/ParentSettings";
 import RequireParent from "./components/RequireParent";
 import NotFound from "./pages/NotFound";
 import { AppProvider } from './context/AppContext';
+import GlobalLoader from './components/GlobalLoader';
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
         <AppProvider>
           <Toaster />
           <Sonner />
+          <GlobalLoader />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
