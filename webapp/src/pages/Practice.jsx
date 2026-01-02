@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import QuizCard from '../components/QuizCard';
 import Navbar from '../components/Navbar';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import { getJson } from '../lib/api';
 
 const Practice = () => {
   const navigate = useNavigate();
@@ -61,6 +62,17 @@ const Practice = () => {
     let isMounted = true;
 
     async function loadQuestions() {
+      // 1) First choice: fetch from the configured API server (VITE_API_BASE)
+      try {
+        const data = await getJson('/api/v1/demo-practice.json', { cache: 'no-store' });
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          setQuestions(data);
+          return;
+        }
+      } catch (_) {
+        // ignore and try next strategy
+      }
+
       try {
         // Prefer loading from src via Vite's optional glob import (no build error if missing)
         const modules = import.meta.glob('../data/questions1.json', { eager: true });

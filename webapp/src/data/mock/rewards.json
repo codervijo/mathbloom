@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "icon": "🏆",
+    "title": "First Steps",
+    "description": "Complete your first problem",
+    "earned": true,
+    "earnedDate": "Oct 24"
+  },
+  {
+    "id": 2,
+    "icon": "⭐",
+    "title": "Math Star",
+    "description": "Get 10 correct answers",
+    "earned": true,
+    "earnedDate": "Oct 25"
+  },
+  {
+    "id": 3,
+    "icon": "🔥",
+    "title": "Hot Streak",
+    "description": "7 day practice streak",
+    "earned": true,
+    "earnedDate": "Oct 30"
+  },
+  {
+    "id": 4,
+    "icon": "🎯",
+    "title": "Perfect Score",
+    "description": "Score 100% on a quiz",
+    "earned": true,
+    "earnedDate": "Oct 26"
+  },
+  {
+    "id": 5,
+    "icon": "✖️",
+    "title": "Multiply Master",
+    "description": "Master multiplication",
+    "earned": false
+  },
+  {
+    "id": 6,
+    "icon": "➕",
+    "title": "Addition Ace",
+    "description": "Excel at addition",
+    "earned": true,
+    "earnedDate": "Oct 23"
+  },
+  {
+    "id": 7,
+    "icon": "➗",
+    "title": "Division Pro",
+    "description": "Complete division course",
+    "earned": false
+  },
+  {
+    "id": 8,
+    "icon": "🚀",
+    "title": "Speed Demon",
+    "description": "Complete 20 problems in 5 min",
+    "earned": false
+  },
+  {
+    "id": 9,
+    "icon": "💎",
+    "title": "Diamond League",
+    "description": "Reach top 10 leaderboard",
+    "earned": false
+  },
+  {
+    "id": 10,
+    "icon": "🎓",
+    "title": "Math Graduate",
+    "description": "Complete all courses",
+    "earned": false
+  },
+  {
+    "id": 11,
+    "icon": "🌟",
+    "title": "Superstar",
+    "description": "Earn 20 badges",
+    "earned": false
+  },
+  {
+    "id": 12,
+    "icon": "👑",
+    "title": "Math King",
+    "description": "Reach level 10",
+    "earned": false
+  }
+]
