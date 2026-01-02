@@ -2,7 +2,9 @@ FROM debian:latest
 
 # Update and install base dependencies
 RUN apt-get -y update && apt-get -y upgrade && \
-    apt-get -y install git vim wget curl build-essential autoconf autotools-dev procps net-tools ssh bash
+    apt-get -y install git vim wget curl build-essential autoconf autotools-dev procps net-tools ssh bash \
+    # Go toolchain (for `server/`)
+    golang
 
 # Set Bash as the default shell
 SHELL ["/bin/bash", "-c"]
