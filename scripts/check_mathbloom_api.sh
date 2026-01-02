@@ -143,5 +143,16 @@ post_ok "/scamsense" '{"message":"test"}'
 
 # 5) Non-existent path
 post_nonexistent "/api/nonexistent" '{}'
+post_nonexistent "/api/v1/nonexistent" '{}'
+
+# 6) Mathbloom App specific API endpoints
+http_ok "/api/v1/status"
+json_check "/api/v1/status" '.status == "ok"'
+json_check "/api/v1/status" '.version | type == "string"'
+json_check "/api/v1/status" '.uptime | type == "number"'
+
+http_ok "/api/v1/demo-questions"
+json_check "/api/v1/demo-questions" '(type == "array") and (length > 0)'
+json_check "/api/v1/demo-questions" '.[0] | has("id") and has("question") and (has("options") and (.options | type == "array")) and has("answer")'
 
 echo "All checks passed."
