@@ -1,19 +1,9 @@
 import { Box, Container, Typography, Card, CardContent, Avatar, Chip } from '@mui/material';
 import Navbar from '../components/Navbar';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import players from '../data/mock/leaderboard.json';
 
 const Leaderboard = () => {
-  const players = [
-    { rank: 1, name: 'Emma S.', avatar: '👧', points: 2450, badges: 15, streak: 12 },
-    { rank: 2, name: 'Alex K.', avatar: '👦', points: 2380, badges: 14, streak: 10 },
-    { rank: 3, name: 'Sophie M.', avatar: '👧', points: 2210, badges: 13, streak: 8 },
-    { rank: 4, name: 'You', avatar: '🦉', points: 1890, badges: 12, streak: 7, isCurrentUser: true },
-    { rank: 5, name: 'Lucas P.', avatar: '👦', points: 1760, badges: 11, streak: 9 },
-    { rank: 6, name: 'Maya R.', avatar: '👧', points: 1650, badges: 10, streak: 6 },
-    { rank: 7, name: 'Noah T.', avatar: '👦', points: 1540, badges: 10, streak: 5 },
-    { rank: 8, name: 'Olivia W.', avatar: '👧', points: 1420, badges: 9, streak: 7 },
-  ];
-
   const topThree = players.slice(0, 3);
   const restOfPlayers = players.slice(3);
 
