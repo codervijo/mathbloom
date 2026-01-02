@@ -103,6 +103,24 @@ post_ok() {
   pass "POST $path -> 200"
 }
 
+post_nonexistent() {
+  local path="$1"
+  local json_body="$2"
+  local url="${BASE_URL}${path}"
+  local tmp code body
+  tmp=$(mktemp)
+  code=$(curl -sS -o "$tmp" -w "%{http_code}" \
+    -H "Content-Type: application/json" \
+    -d "$json_body" \
+    "$url" || true)
+  body=$(cat "$tmp" 2>/dev/null || true)
+  rm -f "$tmp"
+  if [[ "$code" != "404" ]]; then
+    fail "POST $path expected 404, got $code. Body: $(snippet "$body")"
+  fi
+  pass "POST $path -> 404 as expected"
+}
+
 echo "Checking Mathbloom API at: ${BASE_URL}"
 
 # 1) Health / root
@@ -122,5 +140,8 @@ json_check "/api/demo-family" '.children[0] | has("id") and has("name") and has(
 # 4) Form endpoints (basic smoke)
 post_ok "/submit" '{"hello":"world"}'
 post_ok "/scamsense" '{"message":"test"}'
+
+# 5) Non-existent path
+post_nonexistent "/api/nonexistent" '{}'
 
 echo "All checks passed."
