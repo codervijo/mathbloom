@@ -92,5 +92,24 @@ func main() {
 		return c.JSON(demo)
 	})
 
+	// Status endpoint
+	app.Get("/api/v1/status", func(c *fiber.Ctx) error {
+		status := map[string]interface{}{
+			"status":  "ok",
+			"version": "1.0.0",
+			"uptime":  123456, // in seconds
+		}
+		return c.JSON(status)
+	})
+
+	// Get demo questions endpoint
+	app.Get("/api/v1/demo-questions", func(c *fiber.Ctx) error {
+		questions := []map[string]interface{}{
+			{"id": "q1", "question": "What is 2 + 2?", "options": []int{3, 4, 5}, "answer": 4},
+			{"id": "q2", "question": "What is 5 x 3?", "options": []int{15, 10, 20}, "answer": 15},
+		}
+		return c.JSON(questions)
+	})
+
 	app.Listen(":3000")
 }
