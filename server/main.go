@@ -1,6 +1,9 @@
 package main
 
 import (
+	"encoding/json"
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
@@ -29,6 +32,34 @@ func handle_scamsense(c *fiber.Ctx) error {
 	// process the data
 	// return response
 	return c.SendString("ScamSense endpoint")
+}
+
+func loadDemoPracticeQuestions() []map[string]interface{} {
+	// Primary source: webapp/src/data/practice-questions.json (keeps server + webapp in sync in this repo)
+	candidatePaths := []string{
+		"webapp/src/data/practice-questions.json",
+		"webapp/src/data/questions1.json",
+	}
+
+	for _, p := range candidatePaths {
+		b, err := os.ReadFile(p)
+		if err != nil {
+			continue
+		}
+		var questions []map[string]interface{}
+		if err := json.Unmarshal(b, &questions); err != nil {
+			continue
+		}
+		if len(questions) > 0 {
+			return questions
+		}
+	}
+
+	// Final fallback: hard-coded minimal set
+	return []map[string]interface{}{
+		{"number": 1, "question": "6 × 7 = ?", "type": "multiple-choice", "options": []int{35, 42, 48, 54}, "correctAnswer": 42, "hint": "Think of 6 groups of 7."},
+		{"number": 2, "question": "45 ÷ 9 = ?", "type": "input", "correctAnswer": 5, "hint": "How many 9s fit into 45?"},
+	}
 }
 
 func main() {
@@ -109,6 +140,11 @@ func main() {
 			{"id": "q2", "question": "What is 5 x 3?", "options": []int{15, 10, 20}, "answer": 15},
 		}
 		return c.JSON(questions)
+	})
+
+	// Practice questions endpoint used by the webapp Practice page
+	app.Get("/api/v1/demo-practice.json", func(c *fiber.Ctx) error {
+		return c.JSON(loadDemoPracticeQuestions())
 	})
 
 	app.Listen(":3000")
