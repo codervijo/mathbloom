@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # Allow opting out of hot reload:
-#   HOT_RELOAD=0 ./install_and_run_gofiber.sh
+#   HOT_RELOAD=0 ./run_gofiber.sh
 HOT_RELOAD="${HOT_RELOAD:-1}"
 
 sudo_if_needed() {
@@ -84,7 +84,10 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-  cmd = "go build -o ./tmp/server ."
+  # Disable VCS stamping because containers/devcontainers may not have a full
+  # git repo available (or may have limited permissions), which causes:
+  #   error obtaining VCS status: exit status 128
+  cmd = "go build -buildvcs=false -o ./tmp/server ."
   entrypoint = "tmp/server"
   include_ext = ["go"]
   exclude_dir = ["tmp", "vendor"]
