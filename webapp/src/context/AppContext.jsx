@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { getJson, API_BASE } from '../lib/api';
+import DEMO_FAMILY from '../data/mock/demo_family.json';
 
 const AppContext = createContext();
 
@@ -11,39 +12,7 @@ export const useApp = () => {
   return context;
 };
 
-// Mock data
-const DEMO_FAMILY = {
-  id: 'demo',
-  parentPIN: '1234',
-  children: [
-    {
-      id: 'demo-1',
-      name: 'Sam (Demo)',
-      avatar: '👦',
-      streak: 5,
-      accuracy: 87,
-      level: 4,
-      sessions: [
-        { date: '2025-12-01', topic: 'Addition', problems: 15, accuracy: 93, avgTime: 2.1, status: 'Mastered' },
-        { date: '2025-11-30', topic: 'Multiplication', problems: 12, accuracy: 85, avgTime: 3.2, status: 'Needs Review' },
-        { date: '2025-11-29', topic: 'Subtraction', problems: 10, accuracy: 90, avgTime: 1.8, status: 'Mastered' },
-      ],
-    },
-    {
-      id: 'demo-2',
-      name: 'Ava (Demo)',
-      avatar: '👧',
-      streak: 8,
-      accuracy: 92,
-      level: 5,
-      sessions: [
-        { date: '2025-12-01', topic: 'Division', problems: 10, accuracy: 95, avgTime: 2.5, status: 'Mastered' },
-        { date: '2025-11-30', topic: 'Fractions', problems: 8, accuracy: 88, avgTime: 4.1, status: 'Needs Review' },
-        { date: '2025-11-29', topic: 'Multiplication', problems: 15, accuracy: 94, avgTime: 2.3, status: 'Mastered' },
-      ],
-    },
-  ],
-};
+// Mock data lives in JSON so it can be reused across the app
 
 export const AppProvider = ({ children }) => {
   const [mode, setMode] = useState('demo'); // 'demo' | 'parent'
@@ -60,11 +29,16 @@ export const AppProvider = ({ children }) => {
       const savedFamily = localStorage.getItem('mathbloom-family');
       const savedMode = localStorage.getItem('mathbloom-mode');
 
+      // Only restore from localStorage for non-demo families.
+      // This prevents stale demo data from sticking around after the demo JSON/server data changes.
       if (savedFamily) {
-        setFamily(JSON.parse(savedFamily));
-        if (savedMode) setMode(savedMode);
-        setLoadingDemo(false);
-        return;
+        const parsed = JSON.parse(savedFamily);
+        if (parsed?.id && parsed.id !== 'demo') {
+          setFamily(parsed);
+          if (savedMode) setMode(savedMode);
+          setLoadingDemo(false);
+          return;
+        }
       }
 
       try {
@@ -93,8 +67,11 @@ export const AppProvider = ({ children }) => {
   // Save to localStorage when in parent mode
   useEffect(() => {
     if (mode === 'parent') {
-      localStorage.setItem('mathbloom-family', JSON.stringify(family));
-      localStorage.setItem('mathbloom-mode', mode);
+      // Don't persist demo family data; keep it server/mock-driven.
+      if (family?.id !== 'demo') {
+        localStorage.setItem('mathbloom-family', JSON.stringify(family));
+        localStorage.setItem('mathbloom-mode', mode);
+      }
     }
   }, [family, mode]);
 

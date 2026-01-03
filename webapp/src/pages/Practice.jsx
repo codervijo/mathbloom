@@ -75,8 +75,8 @@ const Practice = () => {
 
       try {
         // Prefer loading from src via Vite's optional glob import (no build error if missing)
-        const modules = import.meta.glob('../data/questions1.json', { eager: true });
-        const mod = modules['../data/questions1.json'];
+        const modules = import.meta.glob('../data/mock/questions1.json', { eager: true });
+        const mod = modules['../data/mock/questions1.json'];
         if (mod && mod.default && Array.isArray(mod.default)) {
           if (isMounted) setQuestions(mod.default);
           return;

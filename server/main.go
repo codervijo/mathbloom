@@ -34,11 +34,47 @@ func handle_scamsense(c *fiber.Ctx) error {
 	return c.SendString("ScamSense endpoint")
 }
 
-func loadDemoPracticeQuestions() []map[string]interface{} {
-	// Primary source: webapp/src/data/practice-questions.json (keeps server + webapp in sync in this repo)
+func handle_demo_family(c *fiber.Ctx) error {
+	// Read demo data from local JSON file (relative to the server process working directory).
+	// Most common: when started via ./server/run_gofiber.sh, the working directory is ./server.
 	candidatePaths := []string{
-		"webapp/src/data/practice-questions.json",
-		"webapp/src/data/questions1.json",
+		"demo_family.json",
+		"server/demo_family.json",
+	}
+
+	var (
+		b   []byte
+		err error
+	)
+	for _, p := range candidatePaths {
+		b, err = os.ReadFile(p)
+		if err == nil {
+			break
+		}
+	}
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error":   "failed to read demo_family.json",
+			"details": err.Error(),
+		})
+	}
+
+	var demo any
+	if err := json.Unmarshal(b, &demo); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error":   "failed to parse demo_family.json",
+			"details": err.Error(),
+		})
+	}
+
+	return c.JSON(demo)
+}
+
+func loadDemoPracticeQuestions() []map[string]interface{} {
+	// Primary source: webapp/src/data/mock/practice-questions.json (keeps server + webapp in sync in this repo)
+	candidatePaths := []string{
+		"webapp/src/data/mock/practice-questions.json",
+		"webapp/src/data/mock/questions1.json",
 	}
 
 	for _, p := range candidatePaths {
@@ -90,37 +126,7 @@ func main() {
 
 	// Demo data endpoint
 	app.Get("/api/demo-family", func(c *fiber.Ctx) error {
-		demo := map[string]interface{}{
-			"id":        "demo",
-			"parentPIN": "1234",
-			"children": []map[string]interface{}{
-				{
-					"id":       "demo-11",
-					"name":     "Sam2 (Demo)",
-					"avatar":   "👦",
-					"streak":   5,
-					"accuracy": 87,
-					"level":    4,
-					"sessions": []map[string]interface{}{
-						{"date": "2025-12-01", "topic": "Addition", "problems": 15, "accuracy": 93, "avgTime": 2.1, "status": "Mastered"},
-						{"date": "2025-11-30", "topic": "Multiplication", "problems": 12, "accuracy": 85, "avgTime": 3.2, "status": "Needs Review"},
-					},
-				},
-				{
-					"id":       "demo-22",
-					"name":     "Ava2 (Demo)",
-					"avatar":   "👧",
-					"streak":   8,
-					"accuracy": 92,
-					"level":    5,
-					"sessions": []map[string]interface{}{
-						{"date": "2025-12-01", "topic": "Division", "problems": 10, "accuracy": 95, "avgTime": 2.5, "status": "Mastered"},
-					},
-				},
-			},
-		}
-
-		return c.JSON(demo)
+		return handle_demo_family(c)
 	})
 
 	// Status endpoint
