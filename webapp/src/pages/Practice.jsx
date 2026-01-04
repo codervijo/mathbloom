@@ -64,7 +64,7 @@ const Practice = () => {
     async function loadQuestions() {
       // 1) First choice: fetch from the configured API server (VITE_API_BASE)
       try {
-        const data = await getJson('/api/v1/demo-practice.json', { cache: 'no-store' });
+        const data = await getJson('/api/v1/mathbloom/demo-practice.json', { cache: 'no-store' });
         if (isMounted && Array.isArray(data) && data.length > 0) {
           setQuestions(data);
           return;

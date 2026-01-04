@@ -42,7 +42,7 @@ export const AppProvider = ({ children }) => {
       }
 
       try {
-        const json = await getJson('/api/demo-family');
+        const json = await getJson('/api/v1/mathbloom/demo-family');
         if (!cancelled) {
           setFamily(json);
           setMode('demo');

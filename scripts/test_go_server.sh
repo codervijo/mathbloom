@@ -11,8 +11,10 @@ if [ $? -eq 0 ]; then
     #exit 0
 fi
 
+API_PREFIX="/api/v1/mathbloom"
+
 for point in about; do
-    END_URL=${SERVER_URL}/$point
+    END_URL=${SERVER_URL}${API_PREFIX}/$point
     echo "Checking server availability at $END_URL ..."
     curl --silent --head $END_URL | grep "200 OK" > /dev/null
     if [ $? -eq 0 ]; then
@@ -23,7 +25,7 @@ for point in about; do
 done
 
 #Check POST endpoint
-END_URL=${SERVER_URL}/submit
+END_URL=${SERVER_URL}${API_PREFIX}/submit
 echo "Checking server availability at $END_URL ..."
 curl --silent -X POST $END_URL | grep "200 OK" > /dev/null
 if [ $? -eq 0 ]; then

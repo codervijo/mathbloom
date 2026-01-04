@@ -123,36 +123,37 @@ post_nonexistent() {
 
 echo "Checking Mathbloom API at: ${BASE_URL}"
 
+API_PREFIX="/api/v1/mathbloom"
+
 # 1) Health / root
-http_ok "/"
-text_check "/" "Hello, GoFiber!"
+http_ok "${API_PREFIX}/"
+text_check "${API_PREFIX}/" "Hello, GoFiber!"
 
 # 2) About
-http_ok "/about"
-text_check "/about" "About"
+http_ok "${API_PREFIX}/about"
+text_check "${API_PREFIX}/about" "About"
 
 # 3) Demo data (used by the webapp)
-http_ok "/api/demo-family"
-json_check "/api/demo-family" '(.id == "demo") and (.parentPIN == "1234")'
-json_check "/api/demo-family" '(.children | type == "array") and (.children | length) > 0'
-json_check "/api/demo-family" '.children[0] | has("id") and has("name") and has("streak") and has("accuracy") and has("level") and has("sessions")'
+http_ok "${API_PREFIX}/demo-family"
+json_check "${API_PREFIX}/demo-family" '(.id == "demo") and (.parentPIN == "1234")'
+json_check "${API_PREFIX}/demo-family" '(.children | type == "array") and (.children | length) > 0'
+json_check "${API_PREFIX}/demo-family" '.children[0] | has("id") and has("name") and has("streak") and has("accuracy") and has("level") and has("sessions")'
 
 # 4) Form endpoints (basic smoke)
-post_ok "/submit" '{"hello":"world"}'
-post_ok "/scamsense" '{"message":"test"}'
+post_ok "${API_PREFIX}/submit" '{"hello":"world"}'
+post_ok "${API_PREFIX}/scamsense" '{"message":"test"}'
 
 # 5) Non-existent path
-post_nonexistent "/api/nonexistent" '{}'
-post_nonexistent "/api/v1/nonexistent" '{}'
+post_nonexistent "${API_PREFIX}/nonexistent" '{}'
 
 # 6) Mathbloom App specific API endpoints
-http_ok "/api/v1/status"
-json_check "/api/v1/status" '.status == "ok"'
-json_check "/api/v1/status" '.version | type == "string"'
-json_check "/api/v1/status" '.uptime | type == "number"'
+http_ok "${API_PREFIX}/status"
+json_check "${API_PREFIX}/status" '.status == "ok"'
+json_check "${API_PREFIX}/status" '.version | type == "string"'
+json_check "${API_PREFIX}/status" '.uptime | type == "number"'
 
-http_ok "/api/v1/demo-questions"
-json_check "/api/v1/demo-questions" '(type == "array") and (length > 0)'
-json_check "/api/v1/demo-questions" '.[0] | has("id") and has("question") and (has("options") and (.options | type == "array")) and has("answer")'
+http_ok "${API_PREFIX}/demo-questions"
+json_check "${API_PREFIX}/demo-questions" '(type == "array") and (length > 0)'
+json_check "${API_PREFIX}/demo-questions" '.[0] | has("id") and has("question") and (has("options") and (.options | type == "array")) and has("answer")'
 
 echo "All checks passed."

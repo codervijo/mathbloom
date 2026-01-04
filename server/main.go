@@ -107,30 +107,33 @@ func main() {
 		AllowMethods: "GET,POST,HEAD,PUT,DELETE,OPTIONS",
 	}))
 
-	app.Get("/", func(c *fiber.Ctx) error {
+	// All REST endpoints are grouped under a versioned Mathbloom prefix.
+	// This keeps routing consistent and avoids future collisions.
+	api := app.Group("/api/v1/mathbloom")
+
+	api.Get("/", func(c *fiber.Ctx) error {
 		return handle_root(c)
 	})
 
-	app.Get("/about", func(c *fiber.Ctx) error {
+	api.Get("/about", func(c *fiber.Ctx) error {
 		return handle_about(c)
 	})
 
-	app.Post("/submit", func(c *fiber.Ctx) error {
-		// handle POST request
+	api.Post("/submit", func(c *fiber.Ctx) error {
 		return handle_submit(c)
 	})
 
-	app.Post("/scamsense", func(c *fiber.Ctx) error {
+	api.Post("/scamsense", func(c *fiber.Ctx) error {
 		return handle_scamsense(c)
 	})
 
 	// Demo data endpoint
-	app.Get("/api/demo-family", func(c *fiber.Ctx) error {
+	api.Get("/demo-family", func(c *fiber.Ctx) error {
 		return handle_demo_family(c)
 	})
 
 	// Status endpoint
-	app.Get("/api/v1/status", func(c *fiber.Ctx) error {
+	api.Get("/status", func(c *fiber.Ctx) error {
 		status := map[string]interface{}{
 			"status":  "ok",
 			"version": "1.0.0",
@@ -140,7 +143,7 @@ func main() {
 	})
 
 	// Get demo questions endpoint
-	app.Get("/api/v1/demo-questions", func(c *fiber.Ctx) error {
+	api.Get("/demo-questions", func(c *fiber.Ctx) error {
 		questions := []map[string]interface{}{
 			{"id": "q1", "question": "What is 2 + 2?", "options": []int{3, 4, 5}, "answer": 4},
 			{"id": "q2", "question": "What is 5 x 3?", "options": []int{15, 10, 20}, "answer": 15},
@@ -149,7 +152,7 @@ func main() {
 	})
 
 	// Practice questions endpoint used by the webapp Practice page
-	app.Get("/api/v1/demo-practice.json", func(c *fiber.Ctx) error {
+	api.Get("/demo-practice.json", func(c *fiber.Ctx) error {
 		return c.JSON(loadDemoPracticeQuestions())
 	})
 
